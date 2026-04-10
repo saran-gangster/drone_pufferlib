@@ -1,0 +1,17 @@
+run_name: baseline_eval
+device: auto
+seed: 7
+artifacts_dir: artifacts
+env:
+  base_config: configs/env.yaml
+  difficulty: easy
+  eval_seed_start: 500000
+  eval_fixed_seeds: [500000, 500001, 500002]
+evaluation:
+  episodes: 50
+  random_policy_episodes: 20
+  medium_episodes: 25
+  save_videos: true
+model:
+  channels: [32, 64, 64]
+  hidden_size: 512

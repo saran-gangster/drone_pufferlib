@@ -1,0 +1,36 @@
+run_name: kaggle_dual_t4_long
+device: auto
+seed: 7
+artifacts_dir: artifacts_kaggle
+env:
+  base_config: configs/env.yaml
+  difficulty: easy
+  train_seed_start: 0
+  train_seed_stride: 100000
+  eval_seed_start: 500000
+  eval_fixed_seeds: [500000, 500001, 500002]
+vectorization:
+  num_workers: 4
+  envs_per_worker: 4
+  multiprocessing: true
+training:
+  total_env_steps: 3000000
+  rollout_length: 256
+  eval_interval: 250000
+  minibatch_size: 4096
+  update_epochs: 4
+  learning_rate: 0.0002
+  gamma: 0.995
+  gae_lambda: 0.97
+  clip_coef: 0.2
+  entropy_coef: 0.01
+  value_coef: 0.5
+  max_grad_norm: 0.5
+  normalize_advantages: true
+evaluation:
+  episodes: 100
+  random_policy_episodes: 30
+  video_episodes: 3
+model:
+  channels: [32, 64, 64]
+  hidden_size: 512
